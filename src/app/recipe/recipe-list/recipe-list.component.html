@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="card">
+    <h5 class="card-header bg-primary">Recipes</h5>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-7">
+          <div class="flex-container">
+            <input
+              [(ngModel)]="searchValue"
+              class="form-control"
+              placeholder="Search By Name"
+            />
+          </div>
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Ingredients</th>
+                <th scope="col">Calories</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let recipe of recipeList | search: searchValue:'name'" >
+                <td>{{ recipe.name }}</td>
+                <td>{{ recipe.description }}</td>
+                <td>{{ recipe.imageName }}</td>
+                <td>{{ recipe.ingredients }}</td>
+                <td>{{ recipe.calories }}</td>
+                <td>{{ recipe.create_date }}</td>
+                <td>
+                  <i class="fa fa-pencil" (click)="editRecipe(recipe)"></i>
+                  <i class="fa fa-trash" (click)="deleteRecipe(recipe)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <button
+            type="button"
+            class="btn btn-primary btn-margin"
+            (click)="addRecipe()"
+          >
+            Add Recipe
+          </button> -->
+        </div>
+<app-recipe-create [selectedRecipe]="selectedRecipe"></app-recipe-create>
+      </div>
+    </div>
+  </div>
+</div>

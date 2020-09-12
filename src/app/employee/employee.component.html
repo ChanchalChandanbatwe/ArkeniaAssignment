@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="card">
+    <h5 class="card-header bg-primary">Employee Details</h5>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-7">
+          <div class="flex-container">
+            <input
+              [(ngModel)]="searchValue"
+              class="form-control"
+              placeholder="Search By Name"
+            />
+          </div>
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">
+                  Name
+                  <i
+                    class="fa fa-sort c-pointer"
+                    aria-hidden="true"
+                    (click)="sortCandiates('name')"
+                  ></i>
+                </th>
+                <th scope="col">Department</th>
+                <th scope="col">
+                  Joining Date
+                  <i
+                    class="fa fa-sort c-pointer"
+                    aria-hidden="true"
+                    (click)="sortCandiates('joining_date')"
+                  ></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let candidate of candidateList | search: searchValue:'name'
+                "
+              >
+                <td>{{ candidate.name }}</td>
+                <td>{{ candidate.department }}</td>
+                <td>{{ candidate.joining_date }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button
+            type="button"
+            class="btn btn-primary btn-margin"
+            (click)="removeDevCandidatesClickHandle()"
+          >
+            Remove development candidates
+          </button>
+        </div>
+        <div class="col-sm-5">
+          <button
+            type="button"
+            class="btn btn-primary btn-margin"
+            (click)="expGrterClickHandle()"
+          >
+            Experience > 2 years
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-margin"
+            (click)="getDepartmentCountClickHandle()"
+          >
+            Get Department Count
+          </button>
+
+          <table
+            *ngIf="departmentSummaryList.length > 0"
+            class="table table-sm table-bordered mt-50"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Department</th>
+                <th scope="col">Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let department of departmentSummaryList">
+                <td>{{ department.name }}</td>
+                <td>{{ department.count }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table
+            *ngIf="seniorCandidateList.length > 0"
+            class="table table-sm table-bordered"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Joining Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let candidate of seniorCandidateList">
+                <td>{{ candidate.name }}</td>
+                <td>{{ candidate.department }}</td>
+                <td>{{ candidate.joining_date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
