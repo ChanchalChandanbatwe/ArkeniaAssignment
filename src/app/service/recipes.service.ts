@@ -39,7 +39,6 @@ export class RecipesService {
   getAll() {
     this.httpClient.get<RecipeResponse[]>(this.apiServer + '/recipes/')
     .subscribe((data)=>{
-      console.log(data);
       if(data['message']==='success')
         this.recipeList.next(data['recipes']);
     })

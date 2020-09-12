@@ -4,7 +4,6 @@ const body_parser = require("body-parser");
 const mongoose = require('mongoose');
 
 
-// mongoose.connect('mongodb+srv://Tejas:kx2HJDTyBfk9H3wI@cluster0-dz8ke.mongodb.net/node-angular?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 let uri = 'mongodb://127.0.0.1:27017/sampleApplication';
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
